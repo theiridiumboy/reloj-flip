@@ -1,5 +1,6 @@
-# Slot editorial reutilizable — diseño
+# Widget IA — diseño del slot editorial reutilizable
 
+**Nombre:** Widget IA
 **Fecha:** 2026-08-09
 **Repo:** `theiridiumboy/reloj-flip`
 **Estado:** aprobado por Rory, pendiente de implementación
