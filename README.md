@@ -27,17 +27,27 @@ Usar **iframe**, nunca copiar el HTML crudo al editor de WordPress — el CSS de
 
 El widget ya es responsive internamente (escala como una unidad rígida), así que el iframe puede vivir dentro de un contenedor más angosto sin romperse.
 
-## Cómo hacer cambios
+## Widget IA: el slot es reutilizable
 
-1. Editar `index.html` localmente (o pedirle a Claude que lo haga).
-2. Verificar en el navegador antes de subir (`gstack browse` o abrir el archivo local).
-3. Commit + push a `main`:
+`index.html` ya no es solo "el reloj" — es el espacio en vivo del **Widget
+IA**, un slot editorial que puede mostrar distintas ideas con el tiempo.
+Cada idea, incluido el reloj, vive archivada en `variants/` (ver
+`variants/README.md` para el catálogo y el flujo completo de swap).
+
+## Cómo hacer cambios (al variant en vivo)
+
+1. Editar el archivo del variant correspondiente en `variants/` (o pedirle
+   a Claude que lo haga).
+2. Verificar en el navegador antes de subir (`gstack browse`).
+3. Copiar el variant a `index.html`, actualizar `variants/README.md`.
+4. Commit + push a `main`:
    ```bash
-   git add index.html
+   git add index.html variants/
    git commit -m "descripción del cambio"
    git push
    ```
-4. GitHub Pages redeploya solo. El iframe del webmaster se actualiza automático (no hay que tocar nada en WordPress).
+5. GitHub Pages redeploya solo. Verificar con `curl` que sirvió el cambio
+   antes de avisar que ya está en vivo.
 
 ## Fecha de inicio del contador
 
@@ -55,3 +65,4 @@ Si la fecha real de arranque de la mesa cambia, actualizar ese valor y pushear.
 - `DESIGN.md` — contrato de dirección visual, decisiones de diseño detalladas.
 - `PRODUCT.md` — notas de producto.
 - `experiments/` — versiones descartadas o de prueba, no usar en producción.
+- `variants/` — catálogo de ideas archivadas para el Widget IA (ver `variants/README.md`). `index.html` siempre es un espejo exacto del variant marcado "En vivo" ahí.
