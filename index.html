@@ -23,7 +23,9 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; background: transparent; }
 
-  .mt { height: 200px; max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 30% 1fr; border: 3px solid var(--rosa); outline: 2px solid var(--navy); outline-offset: -5px; overflow: hidden; background: var(--papel); }
+  .mt { height: 200px; max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 28% 1fr; border: 3px solid var(--rosa); outline: 2px solid var(--navy); outline-offset: -5px; overflow: hidden; background: var(--papel); color: inherit; text-decoration: none; cursor: pointer; }
+  .mt:focus-visible { outline: 3px solid var(--rojo); outline-offset: -3px; }
+  .mt:hover .mt-hero h1 span { color: #fff; }
 
   .mt-hero { position: relative; background: url("assets/midterms/cabecera.jpg") 50% 40% / cover no-repeat var(--navy); display: flex; flex-direction: column; justify-content: flex-end; padding: 12px 14px 14px; }
   .mt-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(31, 34, 102, .1) 20%, rgba(31, 34, 102, .9) 78%); }
@@ -33,7 +35,7 @@
   .mt-hero h1 { margin: 0; font: 900 23px/.92 var(--display); text-transform: uppercase; color: #fff; text-wrap: balance; text-shadow: 2px 2px 0 var(--navy); }
   .mt-hero h1 span { display: block; color: var(--rosa); }
 
-  .mt-panel { background-image: radial-gradient(rgba(31, 34, 102, .07) 1px, transparent 1.4px); background-size: 6px 6px; padding: 15px 30px 13px 24px; display: grid; grid-template-rows: 1fr 1fr auto; gap: 6px; min-width: 0; }
+  .mt-panel { background-image: radial-gradient(rgba(31, 34, 102, .07) 1px, transparent 1.4px); background-size: 6px 6px; padding: 15px 26px 13px 22px; display: grid; grid-template-rows: 1fr 1fr auto; gap: 6px; min-width: 0; }
 
   .mt-fila { display: grid; grid-template-columns: 10.5em 3.4ch 1fr 3.4ch; align-items: center; column-gap: 16px; min-width: 0; }
   .mt-nombre { display: grid; gap: 3px; }
@@ -45,57 +47,65 @@
 
   .mt-pista { display: grid; gap: 6px; padding-bottom: 15px; min-width: 0; }
   .mt-barra { position: relative; height: 22px; background: var(--gris); border: 2px solid var(--rosa); outline: 2px solid var(--navy); }
-  .mt-seg { position: absolute; top: 0; bottom: 0; }
+  .mt-seg { position: absolute; top: 0; bottom: 0; overflow: hidden; }
+  .mt-seg::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, transparent 0 30%, rgba(255, 255, 255, .12) 42%, rgba(255, 255, 255, .42) 50%, rgba(255, 255, 255, .12) 58%, transparent 70% 100%); transform: translateX(-100%); opacity: 0; }
   .mt-seg::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .22) 1px, transparent 1.5px); background-size: 5px 5px; }
   .mt-seg.rep { background: var(--rojo); }
   .mt-seg.dem { background: var(--navy); }
-  .mt-seg.fijo.rep { background: repeating-linear-gradient(135deg, var(--rojo) 0 5px, #a81f2b 5px 10px); }
-  .mt-seg.fijo.dem { background: repeating-linear-gradient(135deg, var(--navy) 0 5px, #3a3d86 5px 10px); }
   .mt-meta { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--tinta); }
-  .mt-meta-txt { position: absolute; top: calc(100% + 3px); transform: translateX(-50%); white-space: nowrap; font: 700 10px/1 var(--util); letter-spacing: .05em; text-transform: uppercase; color: var(--tinta); }
+  .mt-meta-txt { position: absolute; top: calc(100% + 3px); transform: translateX(-50%); white-space: nowrap; font: 700 11px/1 var(--util); letter-spacing: .04em; text-transform: uppercase; color: var(--tinta); }
   .mt-partidos { display: flex; justify-content: space-between; font: 700 11px/1 var(--util); letter-spacing: .06em; text-transform: uppercase; }
   .mt-partidos .rep { color: var(--rojo); } .mt-partidos .dem { color: var(--navy); }
   .mt-gana { color: #fff; padding: 2px 5px; margin-left: 4px; }
   .mt-gana[hidden], .mt-partidos .corto { display: none; }
   .rep .mt-gana { background: var(--rojo); } .dem .mt-gana { background: var(--navy); margin: 0 4px 0 0; }
 
-  .mt-pie { display: flex; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--navy); padding-top: 6px; font: 11px/1.2 var(--util); color: var(--suave); }
+  .mt-pie { display: flex; justify-content: space-between; gap: 4px 10px; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--navy); padding-top: 6px; font: 11px/1.2 var(--util); color: var(--suave); }
   .mt-pie > :first-child { margin-right: auto; }
+  .mt-pie > * { white-space: nowrap; }
   .mt-pie b { color: var(--tinta); }
-  .mt-pie i { display: inline-block; width: 10px; height: 10px; vertical-align: -1px; margin-right: 4px; border: 1px solid var(--navy); background: repeating-linear-gradient(135deg, #8a8aa8 0 2px, #c8c8d8 2px 4px); }
   .mt-error { color: var(--rojo); }
 
   /* Crédito obligatorio en todo widget: misma pastilla oscura de Barra 2 */
   .mt-credito { display: flex; align-items: center; gap: 5px; background: var(--navy); padding: 4px 9px; border-radius: 3px; white-space: nowrap; pointer-events: none; }
-  .mt-credito span { font: 700 10px/1 var(--util); letter-spacing: .02em; color: rgba(255, 255, 255, .85); }
-  .mt-credito img { height: 11px; width: auto; display: block; }
+  .mt-credito span { font: 700 11px/1 var(--util); letter-spacing: .02em; color: rgba(255, 255, 255, .85); }
+  .mt-credito img { height: 12px; width: auto; display: block; }
 
   /* Angosto (móvil): la ilustración pasa a franja de título arriba, el alto sigue en 200 */
   @media (max-width: 640px) {
-    .mt { grid-template-columns: 1fr; grid-template-rows: 46px 1fr; }
+    .mt { grid-template-columns: 1fr; grid-template-rows: 40px 1fr; }
     .mt-hero { flex-direction: row; align-items: center; justify-content: flex-start; gap: 8px; padding: 6px 12px; background-position: 50% 30%; }
     .mt-hero::before { background: rgba(31, 34, 102, .78); }
     .mt-vivo { margin: 0; align-self: center; }
     .mt-hero h1 { font-size: 16px; }
     .mt-hero h1 span { display: inline; }
-    .mt-panel { padding: 10px 20px 10px 18px; gap: 2px; }
-    .mt-pista { gap: 4px; padding-bottom: 13px; }
+    .mt-panel { padding: 7px 20px 9px 18px; gap: 0; }
+    .mt-pie { padding-top: 4px; row-gap: 3px; justify-content: flex-end; }
+    .mt-pista { gap: 3px; padding-bottom: 13px; }
+    .mt-num { line-height: .8; }
     .mt-fila { grid-template-columns: 5em 2.8ch 1fr 2.8ch; column-gap: 10px; }
     .mt-nombre b { font-size: 16px; }
     .mt-nombre small { display: none; }
     .mt-num { font-size: 30px; }
-    .mt-barra { height: 16px; }
-    .mt-pie .ley, .mt-partidos .largo { display: none; }
+    .mt-barra { height: 14px; }
+    .mt-pie [data-k="hora"], .mt-partidos .largo { display: none; }
+    .mt-pie .ley { font-size: 11px; }
     .mt-partidos .corto { display: inline; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .mt-vivo::before { animation: latido 1.6s ease-in-out infinite; }
-    @keyframes latido { 50% { opacity: .25; } }
+    .mt-vivo { animation: aviso 1.1s ease-out infinite; }
+    .mt-vivo::before { animation: latido 1.1s ease-in-out infinite; }
+    @keyframes aviso { 0% { box-shadow: 0 0 0 0 rgba(255, 70, 85, .9); filter: brightness(1.25); } 60% { box-shadow: 0 0 0 9px rgba(255, 70, 85, 0); filter: brightness(1); } 100% { box-shadow: 0 0 0 0 rgba(255, 70, 85, 0); } }
+    @keyframes latido { 0%, 100% { opacity: 1; box-shadow: 0 0 6px 2px #fff; } 50% { opacity: .35; box-shadow: none; } }
+    .mt-seg.rep::before { animation: haz-der 7s cubic-bezier(.45, 0, .25, 1) infinite; }
+    .mt-seg.dem::before { animation: haz-izq 7s cubic-bezier(.45, 0, .25, 1) infinite; }
+    @keyframes haz-der { 0% { transform: translateX(-100%); opacity: 1; } 50%, 100% { transform: translateX(100%); opacity: 1; } }
+    @keyframes haz-izq { 0% { transform: translateX(100%); opacity: 1; } 50%, 100% { transform: translateX(-100%); opacity: 1; } }
   }
 </style>
 </head>
 <body>
-<div class="mt">
+<a class="mt" href="https://lapatilla.com/secciones/usa/?utm_source=lapatilla&amp;utm_medium=widget&amp;utm_campaign=midterms-2026" target="_blank" rel="noopener noreferrer" aria-label="Elecciones de medio término en Estados Unidos: ver la cobertura en la sección USA de La Patilla">
   <header class="mt-hero" role="img" aria-label="El elefante republicano y el burro demócrata frente a frente sobre la bandera de Estados Unidos">
     <span class="mt-vivo">En vivo</span>
     <h1>Elecciones de medio término <span>Estados Unidos 2026</span></h1>
@@ -124,17 +134,17 @@
 
     <footer class="mt-pie">
       <span data-k="hora">Cargando resultados…</span>
-      <span class="ley"><i></i>No se renuevan este año</span>
+      <span class="ley">Rumbo a las presidenciales en Venezuela</span>
       <span class="mt-credito"><span>Desarrollado por</span><img src="assets/midterms/lp-logo-light.png" alt="La Patilla"></span>
     </footer>
   </div>
-</div>
+</a>
 
 <script>
 (() => {
   const DATA = 'https://raw.githubusercontent.com/theiridiumboy/reloj-flip/datos/live.json';
-  const CADA_MS = 60000;
-  const hora = new Intl.DateTimeFormat('es', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' });
+  const CADA_MS = 5 * 60000;
+  const hora = new Intl.DateTimeFormat('es-VE', { timeZone: 'America/Caracas', hour: 'numeric', minute: '2-digit', hour12: true });
 
   const seg = (cls, from, width, side) => {
     const s = document.createElement('div');
@@ -181,7 +191,7 @@
       pinta('senado', j.senado);
       pinta('camara', j.camara);
       h.classList.remove('mt-error');
-      h.textContent = 'Actualizado ' + hora.format(new Date(j.actualizado)) + ' ET';
+      h.textContent = hora.format(new Date(j.actualizado)) + ', hora de Venezuela';
     } catch (e) {
       h.classList.add('mt-error');
       h.textContent = 'No se pudo actualizar. Reintentando…';
