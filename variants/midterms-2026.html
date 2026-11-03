@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elecciones de medio término Estados Unidos 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  /* Banner 980x200 (mismo hueco que Barra 1 y 2): ilustración a la izquierda, dos barras de tinta sobre papel a la derecha */
+  :root {
+    --navy: #1f2266;
+    --rojo: #cf2b38;
+    --papel: #f4efe8;
+    --rosa: #e8b8b0;
+    --gris: #cfc8c4;
+    --tinta: #1a1a40;
+    --suave: #5b5770;
+    --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+    --util: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: transparent; }
+
+  .mt { height: 200px; max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 30% 1fr; border: 3px solid var(--rosa); outline: 2px solid var(--navy); outline-offset: -5px; overflow: hidden; background: var(--papel); }
+
+  .mt-hero { position: relative; background: url("assets/midterms/cabecera.jpg") 50% 40% / cover no-repeat var(--navy); display: flex; flex-direction: column; justify-content: flex-end; padding: 12px 14px 14px; }
+  .mt-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(31, 34, 102, .1) 20%, rgba(31, 34, 102, .9) 78%); }
+  .mt-hero > * { position: relative; }
+  .mt-vivo { align-self: flex-start; display: inline-flex; align-items: center; gap: 5px; background: var(--rojo); color: #fff; font: 700 11px/1 var(--util); letter-spacing: .1em; text-transform: uppercase; padding: 4px 7px; border: 2px solid var(--rosa); margin-bottom: 6px; white-space: nowrap; flex: none; }
+  .mt-vivo::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+  .mt-hero h1 { margin: 0; font: 900 23px/.92 var(--display); text-transform: uppercase; color: #fff; text-wrap: balance; text-shadow: 2px 2px 0 var(--navy); }
+  .mt-hero h1 span { display: block; color: var(--rosa); }
+
+  .mt-panel { background-image: radial-gradient(rgba(31, 34, 102, .07) 1px, transparent 1.4px); background-size: 6px 6px; padding: 15px 30px 13px 24px; display: grid; grid-template-rows: 1fr 1fr auto; gap: 6px; min-width: 0; }
+
+  .mt-fila { display: grid; grid-template-columns: 10.5em 3.4ch 1fr 3.4ch; align-items: center; column-gap: 16px; min-width: 0; }
+  .mt-nombre { display: grid; gap: 3px; }
+  .mt-nombre b { font: 900 21px/1 var(--display); text-transform: uppercase; color: var(--navy); }
+  .mt-nombre small { font: 11px/1.15 var(--util); color: var(--suave); }
+  .mt-num { font: 900 42px/.85 var(--display); font-variant-numeric: tabular-nums; }
+  .mt-num.rep { color: var(--rojo); text-align: right; }
+  .mt-num.dem { color: var(--navy); }
+
+  .mt-pista { display: grid; gap: 6px; padding-bottom: 15px; min-width: 0; }
+  .mt-barra { position: relative; height: 22px; background: var(--gris); border: 2px solid var(--rosa); outline: 2px solid var(--navy); }
+  .mt-seg { position: absolute; top: 0; bottom: 0; }
+  .mt-seg::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .22) 1px, transparent 1.5px); background-size: 5px 5px; }
+  .mt-seg.rep { background: var(--rojo); }
+  .mt-seg.dem { background: var(--navy); }
+  .mt-seg.fijo.rep { background: repeating-linear-gradient(135deg, var(--rojo) 0 5px, #a81f2b 5px 10px); }
+  .mt-seg.fijo.dem { background: repeating-linear-gradient(135deg, var(--navy) 0 5px, #3a3d86 5px 10px); }
+  .mt-meta { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--tinta); }
+  .mt-meta-txt { position: absolute; top: calc(100% + 3px); transform: translateX(-50%); white-space: nowrap; font: 700 10px/1 var(--util); letter-spacing: .05em; text-transform: uppercase; color: var(--tinta); }
+  .mt-partidos { display: flex; justify-content: space-between; font: 700 11px/1 var(--util); letter-spacing: .06em; text-transform: uppercase; }
+  .mt-partidos .rep { color: var(--rojo); } .mt-partidos .dem { color: var(--navy); }
+  .mt-gana { color: #fff; padding: 2px 5px; margin-left: 4px; }
+  .mt-gana[hidden], .mt-partidos .corto { display: none; }
+  .rep .mt-gana { background: var(--rojo); } .dem .mt-gana { background: var(--navy); margin: 0 4px 0 0; }
+
+  .mt-pie { display: flex; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--navy); padding-top: 6px; font: 11px/1.2 var(--util); color: var(--suave); }
+  .mt-pie > :first-child { margin-right: auto; }
+  .mt-pie b { color: var(--tinta); }
+  .mt-pie i { display: inline-block; width: 10px; height: 10px; vertical-align: -1px; margin-right: 4px; border: 1px solid var(--navy); background: repeating-linear-gradient(135deg, #8a8aa8 0 2px, #c8c8d8 2px 4px); }
+  .mt-error { color: var(--rojo); }
+
+  /* Crédito obligatorio en todo widget: misma pastilla oscura de Barra 2 */
+  .mt-credito { display: flex; align-items: center; gap: 5px; background: var(--navy); padding: 4px 9px; border-radius: 3px; white-space: nowrap; pointer-events: none; }
+  .mt-credito span { font: 700 10px/1 var(--util); letter-spacing: .02em; color: rgba(255, 255, 255, .85); }
+  .mt-credito img { height: 11px; width: auto; display: block; }
+
+  /* Angosto (móvil): la ilustración pasa a franja de título arriba, el alto sigue en 200 */
+  @media (max-width: 640px) {
+    .mt { grid-template-columns: 1fr; grid-template-rows: 46px 1fr; }
+    .mt-hero { flex-direction: row; align-items: center; justify-content: flex-start; gap: 8px; padding: 6px 12px; background-position: 50% 30%; }
+    .mt-hero::before { background: rgba(31, 34, 102, .78); }
+    .mt-vivo { margin: 0; align-self: center; }
+    .mt-hero h1 { font-size: 16px; }
+    .mt-hero h1 span { display: inline; }
+    .mt-panel { padding: 10px 20px 10px 18px; gap: 2px; }
+    .mt-pista { gap: 4px; padding-bottom: 13px; }
+    .mt-fila { grid-template-columns: 5em 2.8ch 1fr 2.8ch; column-gap: 10px; }
+    .mt-nombre b { font-size: 16px; }
+    .mt-nombre small { display: none; }
+    .mt-num { font-size: 30px; }
+    .mt-barra { height: 16px; }
+    .mt-pie .ley, .mt-partidos .largo { display: none; }
+    .mt-partidos .corto { display: inline; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .mt-vivo::before { animation: latido 1.6s ease-in-out infinite; }
+    @keyframes latido { 50% { opacity: .25; } }
+  }
+</style>
+</head>
+<body>
+<div class="mt">
+  <header class="mt-hero" role="img" aria-label="El elefante republicano y el burro demócrata frente a frente sobre la bandera de Estados Unidos">
+    <span class="mt-vivo">En vivo</span>
+    <h1>Elecciones de medio término <span>Estados Unidos 2026</span></h1>
+  </header>
+
+  <div class="mt-panel">
+    <section class="mt-fila" id="senado" aria-label="Senado">
+      <div class="mt-nombre"><b>Senado</b><small>100 escaños · 35 en disputa</small></div>
+      <span class="mt-num rep" data-k="rep">—</span>
+      <div class="mt-pista">
+        <div class="mt-partidos"><span class="rep"><span class="largo">Republicanos</span><span class="corto">Rep.</span><span class="mt-gana" data-k="rep-gana" hidden>Control</span></span><span class="dem"><span class="mt-gana" data-k="dem-gana" hidden>Control</span><span class="largo">Demócratas</span><span class="corto">Dem.</span></span></div>
+        <div class="mt-barra" role="img" data-k="barra"></div>
+      </div>
+      <span class="mt-num dem" data-k="dem">—</span>
+    </section>
+
+    <section class="mt-fila" id="camara" aria-label="Cámara de Representantes">
+      <div class="mt-nombre"><b>Cámara</b><small>435 escaños · todos en disputa</small></div>
+      <span class="mt-num rep" data-k="rep">—</span>
+      <div class="mt-pista">
+        <div class="mt-partidos"><span class="rep"><span class="largo">Republicanos</span><span class="corto">Rep.</span><span class="mt-gana" data-k="rep-gana" hidden>Control</span></span><span class="dem"><span class="mt-gana" data-k="dem-gana" hidden>Control</span><span class="largo">Demócratas</span><span class="corto">Dem.</span></span></div>
+        <div class="mt-barra" role="img" data-k="barra"></div>
+      </div>
+      <span class="mt-num dem" data-k="dem">—</span>
+    </section>
+
+    <footer class="mt-pie">
+      <span data-k="hora">Cargando resultados…</span>
+      <span class="ley"><i></i>No se renuevan este año</span>
+      <span class="mt-credito"><span>Desarrollado por</span><img src="assets/midterms/lp-logo-light.png" alt="La Patilla"></span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(() => {
+  const DATA = 'https://raw.githubusercontent.com/theiridiumboy/reloj-flip/datos/live.json';
+  const CADA_MS = 60000;
+  const hora = new Intl.DateTimeFormat('es', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' });
+
+  const seg = (cls, from, width, side) => {
+    const s = document.createElement('div');
+    s.className = 'mt-seg ' + cls;
+    s.style[side] = from + '%';
+    s.style.width = width + '%';
+    return s;
+  };
+
+  function pinta(id, c) {
+    const root = document.getElementById(id);
+    const q = (k) => root.querySelector(`[data-k="${k}"]`);
+    const pct = (n) => (n / c.total) * 100;
+    const r = c.rep, d = c.dem;
+    for (const p of ['rep', 'dem']) {
+      q(p).textContent = c[p].escanos;
+      q(p + '-gana').hidden = !c[p].gana;
+    }
+    const barra = q('barra');
+    barra.querySelectorAll('.mt-seg, .mt-meta').forEach((e) => e.remove());
+    const meta = document.createElement('div');
+    meta.className = 'mt-meta';
+    meta.style.left = (c.mayoria - 0.5) / c.total * 100 + '%';
+    const txt = document.createElement('span');
+    txt.className = 'mt-meta-txt';
+    txt.textContent = `${c.mayoria} para la mayoría`;
+    meta.append(txt);
+    barra.append(
+      seg('rep fijo', 0, pct(r.fuera_de_disputa), 'left'),
+      seg('rep', pct(r.fuera_de_disputa), pct(r.escanos - r.fuera_de_disputa), 'left'),
+      seg('dem fijo', 0, pct(d.fuera_de_disputa), 'right'),
+      seg('dem', pct(d.fuera_de_disputa), pct(d.escanos - d.fuera_de_disputa), 'right'),
+      meta
+    );
+    barra.setAttribute('aria-label', `Republicanos ${r.escanos}, demócratas ${d.escanos}, de ${c.total} escaños. Mayoría: ${c.mayoria}.`);
+  }
+
+  async function carga() {
+    const h = document.querySelector('[data-k="hora"]');
+    try {
+      const res = await fetch(DATA + '?t=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) throw new Error(res.status);
+      const j = await res.json();
+      pinta('senado', j.senado);
+      pinta('camara', j.camara);
+      h.classList.remove('mt-error');
+      h.textContent = 'Actualizado ' + hora.format(new Date(j.actualizado)) + ' ET';
+    } catch (e) {
+      h.classList.add('mt-error');
+      h.textContent = 'No se pudo actualizar. Reintentando…';
+    }
+  }
+  carga();
+  setInterval(carga, CADA_MS);
+})();
+</script>
+</body>
+</html>
