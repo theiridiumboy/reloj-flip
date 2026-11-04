@@ -37,11 +37,11 @@
 
   .mt-panel { background-image: radial-gradient(rgba(31, 34, 102, .07) 1px, transparent 1.4px); background-size: 6px 6px; padding: 15px 26px 13px 22px; display: grid; grid-template-rows: 1fr 1fr auto; gap: 6px; min-width: 0; }
 
-  .mt-fila { display: grid; grid-template-columns: 10.5em 3.4ch 1fr 3.4ch; align-items: center; column-gap: 16px; min-width: 0; }
+  .mt-fila { display: grid; grid-template-columns: 10.5em auto 1fr auto; align-items: center; column-gap: 16px; min-width: 0; }
   .mt-nombre { display: grid; gap: 3px; }
   .mt-nombre b { font: 900 21px/1 var(--display); text-transform: uppercase; color: var(--navy); }
   .mt-nombre small { font: 11px/1.15 var(--util); color: var(--suave); }
-  .mt-num { font: 900 42px/.85 var(--display); font-variant-numeric: tabular-nums; }
+  .mt-num { font: 900 42px/.85 var(--display); font-variant-numeric: tabular-nums; min-width: 3ch; }
   .mt-num.rep { color: var(--rojo); text-align: right; }
   .mt-num.dem { color: var(--navy); }
 
@@ -83,7 +83,7 @@
     .mt-pie { padding-top: 4px; row-gap: 3px; justify-content: flex-end; }
     .mt-pista { gap: 3px; padding-bottom: 13px; }
     .mt-num { line-height: .8; }
-    .mt-fila { grid-template-columns: 5em 2.8ch 1fr 2.8ch; column-gap: 10px; }
+    .mt-fila { grid-template-columns: 5em auto 1fr auto; column-gap: 10px; }
     .mt-nombre b { font-size: 16px; }
     .mt-nombre small { display: none; }
     .mt-num { font-size: 30px; }
